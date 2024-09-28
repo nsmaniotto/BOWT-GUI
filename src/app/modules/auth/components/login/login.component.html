@@ -1,0 +1,19 @@
+<form [formGroup]="loginFormGroup" (ngSubmit)="submitLogin()">
+  <mat-form-field fxFlex="50" appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="boatObservator" formControlName="login" required>
+  </mat-form-field>
+  <mat-form-field fxFlex="50" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" required>
+  </mat-form-field>
+
+  <button color="accent"
+    [disabled]="!loginFormGroup.valid" mat-icon-button type="submit">
+    <mat-icon aria-label="Sign in" title="Sign in">
+      login
+    </mat-icon>
+    Sign in
+  </button>
+</form>
+<div>No account yet ? <a [routerLink]="[AUTH_PATH, REGISTER_ACTION_PATH]">Register</a></div>
