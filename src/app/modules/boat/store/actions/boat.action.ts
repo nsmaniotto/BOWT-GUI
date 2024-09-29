@@ -11,6 +11,10 @@ export const BoatActionTypes = {
   DISPLAY_BOAT_SUCCESS: type('[Boat] Display Success'),
   DISPLAY_BOAT_FAIL: type('[Boat] Display Fail'),
   BOAT_DISPLAYED: type('[Boat] Boat displayed'),
+  UPDATE_BOAT: type('[Boat] Update'),
+  UPDATE_BOAT_SUCCESS: type('[Boat] Update Success'),
+  UPDATE_BOAT_FAIL: type('[Boat] Update Fail'),
+  BOAT_UPDATED: type('[Boat] Boat updated'),
 };
 
 /* CREATE BOAT */
@@ -53,4 +57,25 @@ export const DisplayBoatFailAction = createAction(
 export const BoatDisplayedAction = createAction(
   BoatActionTypes.BOAT_DISPLAYED,
   props<{ payload: Boat }>()
+);
+
+/* UPDATE BOAT */
+export const UpdateBoatAction = createAction(
+  BoatActionTypes.UPDATE_BOAT,
+  props<Boat>()
+);
+
+export const UpdateBoatSuccessAction = createAction(
+  BoatActionTypes.UPDATE_BOAT_SUCCESS,
+  props<{ boatId: number }>()
+);
+
+export const UpdateBoatFailAction = createAction(
+  BoatActionTypes.CREATE_BOAT_FAIL,
+  props<Boat>()
+);
+
+export const BoatUpdatedAction = createAction(
+  BoatActionTypes.BOAT_UPDATED,
+  props<{ boatId: number }>()
 );

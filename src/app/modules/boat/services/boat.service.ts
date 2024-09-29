@@ -24,6 +24,9 @@ export class BoatService {
   }
 
   /* PUT */
+  public updateBoat(boat: Boat): Observable<void> {
+    return this.http.put<void>(`${servicesUrl.boatUrl}/${boat.id}/name/${boat.name}/description/${boat.description}`, {});
+  }
 
   /* DELETE */
 

@@ -49,14 +49,8 @@ export class BoatPageContainer implements OnInit, OnDestroy {
       this.boat$.pipe(catchError(error => throwError(() => error)))
         .subscribe(boat => {
           if (boat?.id) {
-            const boatDetailsDialogRef = this._dialog.open(BoatDetailsDialogComponent, {
-              data: boat,
-            });
-
-            boatDetailsDialogRef.afterClosed().subscribe(result => {
-              if (result !== undefined) {
-                this._boatStoreService.createBoat(result);
-              }
+            this._dialog.open(BoatDetailsDialogComponent, {
+              data: boat
             });
           }
         })

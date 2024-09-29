@@ -10,10 +10,13 @@ import {
   BoatActionTypes,
   BoatCreatedAction,
   BoatDisplayedAction,
+  BoatUpdatedAction,
   CreateBoatFailAction,
   CreateBoatSuccessAction,
   DisplayBoatFailAction,
-  DisplayBoatSuccessAction
+  DisplayBoatSuccessAction,
+  UpdateBoatFailAction,
+  UpdateBoatSuccessAction
 } from '../actions/boat.action';
 
 @Injectable()
@@ -54,5 +57,24 @@ export class BoatEffect {
   boatDisplaySuccess$: Observable<Action> = createEffect(() => this._actions$.pipe(
     ofType<never>(BoatActionTypes.DISPLAY_BOAT_SUCCESS),
     concatMap(payload => of(BoatDisplayedAction(payload)))
+  ));
+
+  /* CREATE BOAT */
+  updateBoat$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatActionTypes.UPDATE_BOAT),
+    concatMap((boat: Boat) => this._boatService.updateBoat(boat).pipe(
+      map(() => UpdateBoatSuccessAction({ boatId: boat.id as number })),
+      catchError(error => of(UpdateBoatFailAction(error)))
+    ))
+  ));
+
+  boatUpdateSuccess$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatActionTypes.UPDATE_BOAT_SUCCESS),
+    concatMap((payload: { boatId: number }) => of(BoatUpdatedAction(payload)))
+  ));
+
+  boatUpdated$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatActionTypes.BOAT_UPDATED),
+    concatMap(() => of(RefreshBoatListAction()))
   ));
 }

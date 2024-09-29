@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Boat } from '../../models/boat.model';
-import { CreateBoatAction, DisplayBoatAction } from '../actions/boat.action';
+import { CreateBoatAction, DisplayBoatAction, UpdateBoatAction } from '../actions/boat.action';
 import { BoatState, selectBoat } from '../reducers/boat.reducer';
 
 @Injectable({
@@ -21,5 +21,9 @@ export class BoatStoreService {
 
   public displayBoat(boatId: number): void {
     return this._store.dispatch(DisplayBoatAction(boatId));
+  }
+
+  public updateBoat(boat: Boat): void {
+    return this._store.dispatch(UpdateBoatAction(boat));
   }
 }
