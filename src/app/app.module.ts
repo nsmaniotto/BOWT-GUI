@@ -13,7 +13,9 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MaterialModule } from './material/material.module';
 import { BoatListEffect } from './modules/boat/store/effects/boat-list.effect';
+import { BoatEffect } from './modules/boat/store/effects/boat.effect';
 import { boatListReducer } from './modules/boat/store/reducers/boat-list.reducer';
+import { boatReducer } from './modules/boat/store/reducers/boat.reducer';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { boatListReducer } from './modules/boat/store/reducers/boat-list.reducer
   imports: [
     /* NgRx */
     StoreModule.forRoot({
-      boatListStore: boatListReducer
+      boatListStore: boatListReducer,
+      boatStore: boatReducer
     }, {}),
     EffectsModule.forRoot([
-      BoatListEffect
+      BoatListEffect,
+      BoatEffect
     ]),
 
     MaterialModule,

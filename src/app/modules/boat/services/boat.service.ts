@@ -16,6 +16,9 @@ export class BoatService {
   }
 
   /* POST */
+  public create(boat: Boat): Observable<Boat> {
+    return this.http.post<Boat>(`${servicesUrl.boatUrl}`, boat);
+  }
 
   /* PUT */
 

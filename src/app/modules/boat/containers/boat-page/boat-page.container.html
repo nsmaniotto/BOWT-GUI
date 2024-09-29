@@ -1,5 +1,6 @@
 <div *ngIf="boatList$ | async as boats; else noBoat">
   <div *ngIf="boats.length;else noBoat">
+    <app-boat-create-button (onClick)="openBoatCreationDialog()"></app-boat-create-button>
     <app-boat-table [boats]="boats"></app-boat-table>
   </div>
 </div>
@@ -7,5 +8,5 @@
 <ng-template #noBoat>
   <h1>No Boat created yet ?</h1>
   <h2>Create your first boat</h2>
-  <!-- TODO: CREATE BUTTON -->
+  <app-boat-create-button [capitalizeText]="true" (onClick)="openBoatCreationDialog()"></app-boat-create-button>
 </ng-template>
