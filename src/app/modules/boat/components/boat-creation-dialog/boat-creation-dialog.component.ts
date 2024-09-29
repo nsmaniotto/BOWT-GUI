@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BoatFieldMaxLength, BoatFieldMinLength } from '../../models/boat.model';
 
 @Component({
   selector: 'app-boat-creation-dialog',
@@ -8,16 +9,24 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class BoatCreationDialogComponent {
 
+  public readonly boatNameFieldMinLength = BoatFieldMinLength.NAME;
+  public readonly boatNameFieldMaxLength = BoatFieldMaxLength.NAME;
+  public readonly boatDescriptionFieldMinLength = BoatFieldMinLength.DESCRIPTION;
+  public readonly boatDescriptionFieldMaxLength = BoatFieldMaxLength.DESCRIPTION;
 
   public boatCreationFormGroup = this._formBuilder.group({
     name: new FormControl<string | undefined>(undefined,
       [
-        Validators.required
+        Validators.required,
+        Validators.minLength(BoatFieldMinLength.NAME),
+        Validators.maxLength(BoatFieldMaxLength.NAME)
       ]
     ),
     description: new FormControl<string | undefined>(undefined,
       [
-        Validators.required
+        Validators.required,
+        Validators.minLength(BoatFieldMinLength.NAME),
+        Validators.maxLength(BoatFieldMaxLength.DESCRIPTION)
       ]
     )
   });
