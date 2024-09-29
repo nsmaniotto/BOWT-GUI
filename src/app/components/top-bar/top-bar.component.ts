@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, Subscription, throwError } from 'rxjs';
 import { NavigationPathEnum } from 'src/app/constants/navigation-path.enum';
 import { NavigationRootPathEnum } from 'src/app/constants/navigation-root-path.enum';
@@ -24,7 +25,8 @@ export class TopBarComponent implements OnInit, OnDestroy {
   public connectedUser: User | undefined;
 
 	constructor(
-    private readonly _authService: AuthService
+    private readonly _authService: AuthService,
+    private readonly _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +39,12 @@ export class TopBarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subscriptions.unsubscribe();
+  }
+
+  public logout(): void {
+    localStorage.removeItem(AUTH_TOKEN_LOCAL_STORAGE_ITEM_KEY);
+    this.connectedUser = undefined;
+    this._router.navigate([this.ROOT_PATH]);
   }
 
   private _retrieveConnectedUser(authToken: string) {

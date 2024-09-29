@@ -9,7 +9,7 @@
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
     <ng-container *ngIf="connectedUser; else loginTemplate">
       <span>Hello {{ connectedUser.firstName }}</span>
-      <button mat-flat-button>
+      <button mat-flat-button (click)="logout()">
         Logout
       </button>
     </ng-container>
