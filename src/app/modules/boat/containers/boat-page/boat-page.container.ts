@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Boat } from '../../models/boat.model';
-import { BoatService } from '../../services/boat.service';
+import { BoatListStoreService } from '../../store/service/boat-list-store.service';
 
 @Component({
   selector: 'app-boat-page',
@@ -8,13 +7,13 @@ import { BoatService } from '../../services/boat.service';
   styleUrls: ['./boat-page.container.css']
 })
 export class BoatPageContainer implements OnInit {
-  constructor(private readonly _boatService: BoatService) { }
+  constructor(
+    private readonly _boatListStoreService: BoatListStoreService
+  ) { }
 
-  public boats: Boat[] = [];
-  public data: any;
+  public readonly boatList$ = this._boatListStoreService.getBoatList();
 
   ngOnInit(): void {
-    this._boatService.getBoats().subscribe(boats => this.boats = boats);
+    this._boatListStoreService.refreshBoatList();
   }
-
 }

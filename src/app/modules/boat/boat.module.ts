@@ -5,10 +5,12 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { BoatRoutingModule } from './boat-routing.module';
 import { BoatPageContainer } from './containers/boat-page/boat-page.container';
+import { BoatTableComponent } from './components/boat-table/boat-table.component';
 
 @NgModule({
   declarations: [
-    BoatPageContainer
+    BoatPageContainer,
+    BoatTableComponent
   ],
   imports: [
     BoatRoutingModule,

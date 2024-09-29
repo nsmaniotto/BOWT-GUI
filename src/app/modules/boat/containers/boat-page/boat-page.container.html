@@ -1,1 +1,11 @@
-<div>Welcome to the boat overview, currently under construction</div>
+<div *ngIf="boatList$ | async as boats; else noBoat">
+  <div *ngIf="boats.length;else noBoat">
+    <app-boat-table [boats]="boats"></app-boat-table>
+  </div>
+</div>
+
+<ng-template #noBoat>
+  <h1>No Boat created yet ?</h1>
+  <h2>Create your first boat</h2>
+  <!-- TODO: CREATE BUTTON -->
+</ng-template>
