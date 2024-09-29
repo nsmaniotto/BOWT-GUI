@@ -8,13 +8,15 @@ import { BoatCreateButtonComponent } from './components/boat-create-button/boat-
 import { BoatCreationDialogComponent } from './components/boat-creation-dialog/boat-creation-dialog.component';
 import { BoatTableComponent } from './components/boat-table/boat-table.component';
 import { BoatPageContainer } from './containers/boat-page/boat-page.container';
+import { BoatDetailsDialogComponent } from './components/boat-details-dialog/boat-details-dialog.component';
 
 @NgModule({
   declarations: [
     BoatPageContainer,
     BoatTableComponent,
     BoatCreateButtonComponent,
-    BoatCreationDialogComponent
+    BoatCreationDialogComponent,
+    BoatDetailsDialogComponent
   ],
   imports: [
     BoatRoutingModule,

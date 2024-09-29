@@ -2,7 +2,9 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import { Boat } from '../../models/boat.model';
 import {
   BoatCreatedAction,
-  CreateBoatAction
+  BoatDisplayedAction,
+  CreateBoatAction,
+  DisplayBoatAction
 } from '../actions/boat.action';
 
 export interface BoatState {
@@ -35,6 +37,21 @@ export const boatReducer = createReducer(
       ...state,
       created: true,
       creating: false
+    };
+  }),
+  on(DisplayBoatAction, (state: BoatState) => {
+    return {
+      ...state,
+      refreshed: false,
+      refreshing: true
+    };
+  }),
+  on(BoatDisplayedAction, (state: BoatState, _action: { payload: Boat }) => {
+    return {
+      ...state,
+      boat: _action.payload,
+      refreshed: true,
+      refreshing: false
     };
   })
 );

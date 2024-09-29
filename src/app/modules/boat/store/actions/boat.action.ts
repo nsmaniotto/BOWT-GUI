@@ -7,6 +7,10 @@ export const BoatActionTypes = {
   CREATE_BOAT_SUCCESS: type('[Boat] Creation Success'),
   CREATE_BOAT_FAIL: type('[Boat] Creation Fail'),
   BOAT_CREATED: type('[Boat] Boat created'),
+  DISPLAY_BOAT: type('[Boat] Display'),
+  DISPLAY_BOAT_SUCCESS: type('[Boat] Display Success'),
+  DISPLAY_BOAT_FAIL: type('[Boat] Display Fail'),
+  BOAT_DISPLAYED: type('[Boat] Boat displayed'),
 };
 
 /* CREATE BOAT */
@@ -28,4 +32,25 @@ export const CreateBoatFailAction = createAction(
 export const BoatCreatedAction = createAction(
   BoatActionTypes.BOAT_CREATED,
   props<{ boatId: number }>()
+);
+
+/* DISPLAY BOAT */
+export const DisplayBoatAction = createAction(
+  BoatActionTypes.DISPLAY_BOAT,
+  (payload: number) => ({ payload })
+);
+
+export const DisplayBoatSuccessAction = createAction(
+  BoatActionTypes.DISPLAY_BOAT_SUCCESS,
+  (payload: Boat) => ({ payload })
+);
+
+export const DisplayBoatFailAction = createAction(
+  BoatActionTypes.DISPLAY_BOAT_FAIL,
+  props<{ payload: Boat }>()
+);
+
+export const BoatDisplayedAction = createAction(
+  BoatActionTypes.BOAT_DISPLAYED,
+  props<{ payload: Boat }>()
 );

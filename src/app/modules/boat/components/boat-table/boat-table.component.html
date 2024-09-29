@@ -4,6 +4,18 @@
     <mat-cell *matCellDef="let boat"> {{ boat.name }} </mat-cell>
   </ng-container>
 
+  <ng-container [matColumnDef]="ACTION_COLUMN_DEFINITION">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let boat">
+      <button color="primary" mat-flat-button (click)="showBoat(boat.id)">
+        <mat-icon aria-label="View endpoint" title="View endpoint">
+          visibility
+        </mat-icon>
+        Show
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>

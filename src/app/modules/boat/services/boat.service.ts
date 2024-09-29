@@ -14,6 +14,9 @@ export class BoatService {
   public getBoats(): Observable<Boat[]> {
     return this.http.get<Boat[]>(servicesUrl.boatUrl);
   }
+  public getBoat(boatId: number): Observable<Boat> {
+    return this.http.get<Boat>(`${servicesUrl.boatUrl}/${boatId}`);
+  }
 
   /* POST */
   public create(boat: Boat): Observable<Boat> {

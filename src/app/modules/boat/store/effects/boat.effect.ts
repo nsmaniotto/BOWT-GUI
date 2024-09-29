@@ -9,17 +9,18 @@ import { RefreshBoatListAction } from '../actions/boat-list.action';
 import {
   BoatActionTypes,
   BoatCreatedAction,
+  BoatDisplayedAction,
   CreateBoatFailAction,
-  CreateBoatSuccessAction
+  CreateBoatSuccessAction,
+  DisplayBoatFailAction,
+  DisplayBoatSuccessAction
 } from '../actions/boat.action';
-import { BoatListStoreService } from '../service/boat-list-store.service';
 
 @Injectable()
 export class BoatEffect {
   constructor(
     private readonly _actions$: Actions,
-    private readonly _boatService: BoatService,
-    private readonly _boatListStoreService: BoatListStoreService
+    private readonly _boatService: BoatService
   ) { }
 
   /* CREATE BOAT */
@@ -39,5 +40,19 @@ export class BoatEffect {
   boatCreated$: Observable<Action> = createEffect(() => this._actions$.pipe(
     ofType<never>(BoatActionTypes.BOAT_CREATED),
     concatMap(() => of(RefreshBoatListAction()))
+  ));
+
+  /* DISPLAY BOAT */
+  boatDisplay$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatActionTypes.DISPLAY_BOAT),
+    concatMap((boatId: { payload: number }) => this._boatService.getBoat(boatId.payload).pipe(
+      map(boat => DisplayBoatSuccessAction(boat)),
+      catchError(error => of(DisplayBoatFailAction(error)))
+    ))
+  ));
+
+  boatDisplaySuccess$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatActionTypes.DISPLAY_BOAT_SUCCESS),
+    concatMap(payload => of(BoatDisplayedAction(payload)))
   ));
 }
