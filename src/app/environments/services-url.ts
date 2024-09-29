@@ -7,6 +7,9 @@ export const servicesUrl = {
   authUrl: `${environment.serviceUrl}auth`,
 
   // USER
-  userUrl: `${environment.serviceUrl}users`
+  userUrl: `${environment.serviceUrl}users`,
+
+  // BOAT
+  boatUrl: `${environment.serviceUrl}boats`
 
 };
