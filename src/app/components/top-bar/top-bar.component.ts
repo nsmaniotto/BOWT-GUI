@@ -5,6 +5,7 @@ import { NavigationRootPathEnum } from 'src/app/constants/navigation-root-path.e
 import { AuthNavigationActionPathEnum } from 'src/app/modules/auth/constants/auth-navigation-action-path.enum';
 import { AUTH_TOKEN_LOCAL_STORAGE_ITEM_KEY } from 'src/app/modules/auth/constants/auth.constant';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { User } from 'src/app/modules/user/models/user.model';
 
 @Component({
   selector: 'app-top-bar',
@@ -20,7 +21,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
 
   private readonly _subscriptions = new Subscription();
 
-  public isConnectedUserValid: boolean = false;
+  public connectedUser: User | undefined;
 
 	constructor(
     private readonly _authService: AuthService
@@ -48,7 +49,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
           return throwError(() => error)
         }))
         .subscribe(result => {
-          this.isConnectedUserValid = true;
+          this.connectedUser = result;
         })
     );
   }

@@ -7,7 +7,8 @@
 
   <span class="spacer"></span>
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <ng-container *ngIf="isConnectedUserValid; else loginTemplate">
+    <ng-container *ngIf="connectedUser; else loginTemplate">
+      <span>Hello {{ connectedUser.firstName }}</span>
       <button mat-flat-button>
         Logout
       </button>
