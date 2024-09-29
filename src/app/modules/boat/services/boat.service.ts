@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { servicesUrl } from 'src/app/environments/services-url';
@@ -29,5 +29,13 @@ export class BoatService {
   }
 
   /* DELETE */
+  public delete(id: number): Observable<void> {
+    return this.deleteMultiple([id]);
+  }
+
+  public deleteMultiple(boatIdList: number[]): Observable<void> {
+    const params = new HttpParams({ fromObject: { id: boatIdList.map(String) } });
+    return this.http.delete<void>(servicesUrl.boatUrl, { params });
+  }
 
 }

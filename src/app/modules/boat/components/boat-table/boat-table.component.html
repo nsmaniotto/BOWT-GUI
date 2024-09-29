@@ -8,10 +8,16 @@
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let boat">
       <button color="primary" mat-flat-button (click)="showBoat(boat.id)">
-        <mat-icon aria-label="View endpoint" title="View endpoint">
+        <mat-icon aria-label="View boat" title="View boat">
           visibility
         </mat-icon>
         Show
+      </button>
+      <button color="accent" mat-flat-button (click)="deleteBoat(boat.id)">
+        <mat-icon aria-label="Delete boat" title="Delete boat">
+          delete
+        </mat-icon>
+        Delete
       </button>
     </mat-cell>
   </ng-container>

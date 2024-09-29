@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Boat } from '../../models/boat.model';
 import {
+  DeleteBoatsFromBoatListAction,
   RefreshBoatListAction
 } from '../actions/boat-list.action';
 import { BoatListState, selectBoatList } from '../reducers/boat-list.reducer';
@@ -11,13 +12,21 @@ import { BoatListState, selectBoatList } from '../reducers/boat-list.reducer';
   providedIn: 'root'
 })
 export class BoatListStoreService {
-  constructor(private readonly store: Store<BoatListState>) { }
+  constructor(private readonly _store: Store<BoatListState>) { }
 
   public getBoatList(): Observable<Boat[] | null> {
-    return this.store.select(selectBoatList);
+    return this._store.select(selectBoatList);
   }
 
   public refreshBoatList(): void {
-    this.store.dispatch(RefreshBoatListAction());
+    this._store.dispatch(RefreshBoatListAction());
+  }
+
+  public deleteBoatFromBoatList(boatId: number): void {
+    this.deleteBoatsFromBoatList([boatId]);
+  }
+
+  public deleteBoatsFromBoatList(boatIdList: number[]): void {
+    this._store.dispatch(DeleteBoatsFromBoatListAction({ boatIdList }));
   }
 }

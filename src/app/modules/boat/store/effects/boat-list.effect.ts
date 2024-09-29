@@ -7,6 +7,9 @@ import { BoatService } from '../../services/boat.service';
 import {
   BoatListActionTypes,
   BoatListRefreshedAction,
+  DeleteBoatsFromBoatListFailAction,
+  DeleteBoatsFromBoatListSuccessAction,
+  RefreshBoatListAction,
   RefreshBoatListFailAction,
   RefreshBoatListSuccessAction
 } from '../actions/boat-list.action';
@@ -24,12 +27,25 @@ export class BoatListEffect {
     concatMap(() => this._boatService.getBoats().pipe(
       map(boatList => RefreshBoatListSuccessAction(boatList)),
       catchError(error => of(RefreshBoatListFailAction(error)))
-    )
-    )
+    ))
   ));
 
   boatListRefreshSuccess$: Observable<Action> = createEffect(() => this._actions$.pipe(
     ofType<never>(BoatListActionTypes.REFRESH_BOAT_LIST_SUCCESS),
     concatMap(payload => of(BoatListRefreshedAction(payload)))
+  ));
+
+  /* DELETE BOATS FROM BOAT LIST */
+  boatListDeleteBoat$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatListActionTypes.DELETE_BOATS_FROM_BOAT_LIST),
+    concatMap((payload: { boatIdList: number[] }) => this._boatService.deleteMultiple(payload.boatIdList).pipe(
+      map(() => DeleteBoatsFromBoatListSuccessAction()),
+      catchError(error => of(DeleteBoatsFromBoatListFailAction(error)))
+    ))
+  ));
+
+  boatListDeleteBoatSuccess$: Observable<Action> = createEffect(() => this._actions$.pipe(
+    ofType<never>(BoatListActionTypes.DELETE_BOATS_FROM_BOAT_LIST_SUCCESS),
+    concatMap(() => of(RefreshBoatListAction()))
   ));
 }

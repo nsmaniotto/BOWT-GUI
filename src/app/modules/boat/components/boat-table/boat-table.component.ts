@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Boat } from '../../models/boat.model';
+import { BoatListStoreService } from '../../store/service/boat-list-store.service';
 import { BoatStoreService } from '../../store/service/boat-store.service';
 
 @Component({
@@ -24,9 +25,13 @@ export class BoatTableComponent {
 
   public boatsDataSource = new MatTableDataSource<Boat>();
 
-  constructor(private readonly _boatStoreService: BoatStoreService) { }
+  constructor(private readonly _boatStoreService: BoatStoreService, private readonly _boatListStoreService: BoatListStoreService) { }
 
   public showBoat(boatId: number): void {
     this._boatStoreService.displayBoat(boatId);
+  }
+
+  public deleteBoat(boatId: number): void {
+    this._boatListStoreService.deleteBoatFromBoatList(boatId);
   }
 }

@@ -6,7 +6,11 @@ export const BoatListActionTypes = {
   REFRESH_BOAT_LIST: type('[Boat List] Refresh'),
   REFRESH_BOAT_LIST_SUCCESS: type('[Boat List] Refresh Success'),
   REFRESH_BOAT_LIST_FAIL: type('[Boat List] Refresh Fail'),
-  BOAT_LIST_REFRESHED: type('[Boat List] Boat list refreshed')
+  BOAT_LIST_REFRESHED: type('[Boat List] Boat list refreshed'),
+  DELETE_BOATS_FROM_BOAT_LIST: type('[Boat List] Delete boats'),
+  DELETE_BOATS_FROM_BOAT_LIST_SUCCESS: type('[Boat List] Delete boats Success'),
+  DELETE_BOATS_FROM_BOAT_LIST_FAIL: type('[Boat List] Delete boats Fail'),
+  BOATS_FROM_BOAT_LIST_DELETED: type('[Boat List] Boats deleted')
 };
 
 /* REFRESH BOAT LIST */
@@ -28,4 +32,25 @@ export const RefreshBoatListFailAction = createAction(
 export const BoatListRefreshedAction = createAction(
   BoatListActionTypes.BOAT_LIST_REFRESHED,
   props<{ payload: Boat[] }>()
+);
+
+/* DELETE BOATS FROM BOAT LIST */
+export const DeleteBoatsFromBoatListAction = createAction(
+  BoatListActionTypes.DELETE_BOATS_FROM_BOAT_LIST,
+  props<{ boatIdList: number[] }>()
+);
+
+export const DeleteBoatsFromBoatListSuccessAction = createAction(
+  BoatListActionTypes.DELETE_BOATS_FROM_BOAT_LIST_SUCCESS,
+  (payload = undefined) => ({ payload })
+);
+
+export const DeleteBoatsFromBoatListFailAction = createAction(
+  BoatListActionTypes.DELETE_BOATS_FROM_BOAT_LIST_FAIL,
+  props<{ boatIdList: number[] }>()
+);
+
+export const BoatsFromBoatListDeletedAction = createAction(
+  BoatListActionTypes.BOATS_FROM_BOAT_LIST_DELETED,
+  props<{ boatIdList: number[] }>()
 );
