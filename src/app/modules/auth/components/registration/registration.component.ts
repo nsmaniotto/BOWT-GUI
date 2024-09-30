@@ -1,13 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { catchError, Subscription, throwError } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { NavigationPathEnum } from 'src/app/constants/navigation-path.enum';
-import { NavigationRootPathEnum } from 'src/app/constants/navigation-root-path.enum';
 import { User } from '../../../user/models/user.model';
 import { AuthNavigationActionPathEnum } from '../../constants/auth-navigation-action-path.enum';
-import { AUTH_TOKEN_LOCAL_STORAGE_ITEM_KEY } from '../../constants/auth.constant';
-import { AuthService } from '../../services/auth.service';
+import { AuthStoreService } from '../../store/service/auth-store.service';
 
 @Component({
   selector: 'app-registration',
@@ -44,10 +41,9 @@ export class RegistrationComponent implements OnDestroy {
     )
   });
 
-	constructor(
-    private readonly _authService: AuthService,
+  constructor(
     private readonly _formBuilder: FormBuilder,
-    private readonly _router: Router
+    private readonly _authStoreService: AuthStoreService,
   ) {}
 
   ngOnDestroy(): void {
@@ -55,21 +51,7 @@ export class RegistrationComponent implements OnDestroy {
   }
 
 	public submitRegistration(): void {
-    this._subscriptions.add(
-      this._authService.register(this.registrationFormGroup.value as User)
-        .pipe(catchError(error => throwError(() => error)))
-        .subscribe(result => {
-          if (result && result.token) {
-            // Store aquired token
-            localStorage.setItem(AUTH_TOKEN_LOCAL_STORAGE_ITEM_KEY, result.token);
-
-            // Redirect to home page
-            this._router.navigate([NavigationRootPathEnum.ROOT]);
-          } else {
-            localStorage.removeItem(AUTH_TOKEN_LOCAL_STORAGE_ITEM_KEY);
-          }
-        })
-    );
+    this._authStoreService.register(this.registrationFormGroup.value as User);
 	}
 
 }

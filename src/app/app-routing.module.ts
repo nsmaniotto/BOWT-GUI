@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavigationRootPathEnum } from './constants/navigation-root-path.enum';
+import { AuthGuard } from './modules/auth/guards/auth.service';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: NavigationRootPathEnum.BOAT,
+    canActivate: [AuthGuard],
     loadChildren: () => import('./modules/boat/boat.module').then(m => m.BoatModule)
   }
 ];

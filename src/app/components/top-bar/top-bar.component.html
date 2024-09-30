@@ -7,16 +7,11 @@
 
   <span class="spacer"></span>
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <ng-container *ngIf="connectedUser; else loginTemplate">
+    <ng-container *ngIf="connectedUser">
       <span>Hello {{ connectedUser.firstName }}</span>
       <button mat-flat-button (click)="logout()">
         Logout
       </button>
     </ng-container>
-    <ng-template #loginTemplate>
-      <button mat-flat-button color="primary" [routerLink]="[AUTH_PATH, LOGIN_ACTION_PATH]">
-        Login
-      </button>
-    </ng-template>
   </div>
 </mat-toolbar>
