@@ -24,6 +24,8 @@ export class BoatPageContainer implements OnInit, OnDestroy {
 
   private readonly _dialog = inject(MatDialog);
 
+  private isBoatDisplayedAtInit = false;
+
   ngOnInit(): void {
     this._boatListStoreService.refreshBoatList();
 
@@ -48,10 +50,12 @@ export class BoatPageContainer implements OnInit, OnDestroy {
     this._subscriptions.add(
       this.boat$.pipe(catchError(error => throwError(() => error)))
         .subscribe(boat => {
-          if (boat?.id) {
+          if (boat?.id && this.isBoatDisplayedAtInit) {
             this._dialog.open(BoatDetailsDialogComponent, {
               data: boat
             });
+          } else {
+            this.isBoatDisplayedAtInit = true;
           }
         })
     );
