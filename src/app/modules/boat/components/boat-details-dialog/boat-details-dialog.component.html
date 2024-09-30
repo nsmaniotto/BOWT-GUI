@@ -1,41 +1,43 @@
-<h2 mat-dialog-title>Boat details</h2>
-<form *ngIf="boatFormGroup" [formGroup]="boatFormGroup" (ngSubmit)="saveBoat()">
-  <mat-dialog-content>
-    <ng-container *ngIf="!isFormInEdition; else editableFields">
-      <p>Name: {{ boatFormGroup.value.name }}</p>
-      <p>Description: {{ boatFormGroup.value.description }}</p>
-    </ng-container>
-    <ng-template #editableFields>
-      <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Titanic" formControlName="name" required>
-        <mat-error *ngIf="boatFormGroup.controls.name.hasError('required')">This field is
-          required</mat-error>
-        <mat-error *ngIf="boatFormGroup.controls.name.hasError('minlength')">This field must contain at
-          least {{ boatNameFieldMinLength }} characters</mat-error>
-        <mat-error *ngIf="boatFormGroup.controls.name.hasError('maxlength')">This field must contain at
-          most {{ boatNameFieldMaxLength }} characters</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
-        <input matInput type="text" formControlName="description" required>
-        <mat-error *ngIf="boatFormGroup.controls.description.hasError('required')">This field is
-          required</mat-error>
-        <mat-error *ngIf="boatFormGroup.controls.description.hasError('minlength')">This field must contain at
-          least {{ boatDescriptionFieldMinLength }} characters</mat-error>
-        <mat-error *ngIf="boatFormGroup.controls.description.hasError('maxlength')">This field must contain at
-          most {{ boatDescriptionFieldMaxLength }} characters</mat-error>
-      </mat-form-field>
-    </ng-template>
+<div id="boat-details-dialog">
+  <h2 mat-dialog-title>Boat details</h2>
+  <form *ngIf="boatFormGroup" [formGroup]="boatFormGroup" (ngSubmit)="saveBoat()">
+    <mat-dialog-content>
+      <ng-container *ngIf="!isFormInEdition; else editableFields">
+        <p>Name: {{ boatFormGroup.value.name }}</p>
+        <p>Description: {{ boatFormGroup.value.description }}</p>
+      </ng-container>
+      <ng-template #editableFields>
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Titanic" formControlName="name" required>
+          <mat-error *ngIf="boatFormGroup.controls.name.hasError('required')">This field is
+            required</mat-error>
+          <mat-error *ngIf="boatFormGroup.controls.name.hasError('minlength')">This field must contain at
+            least {{ boatNameFieldMinLength }} characters</mat-error>
+          <mat-error *ngIf="boatFormGroup.controls.name.hasError('maxlength')">This field must contain at
+            most {{ boatNameFieldMaxLength }} characters</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+          <mat-error *ngIf="boatFormGroup.controls.description.hasError('required')">This field is
+            required</mat-error>
+          <mat-error *ngIf="boatFormGroup.controls.description.hasError('minlength')">This field must contain at
+            least {{ boatDescriptionFieldMinLength }} characters</mat-error>
+          <mat-error *ngIf="boatFormGroup.controls.description.hasError('maxlength')">This field must contain at
+            most {{ boatDescriptionFieldMaxLength }} characters</mat-error>
+          </mat-form-field>
+          </ng-template>
     </mat-dialog-content>
     <mat-dialog-actions>
-    <ng-container *ngIf="!isFormInEdition; else editionActionButtons">
-      <button mat-flat-button [mat-dialog-close] cdkFocusInitial>Close</button>
-      <button mat-flat-button color="primary" (click)="toggleEditionMode()">Edit</button>
+      <ng-container *ngIf="!isFormInEdition; else editionActionButtons">
+        <button mat-flat-button [mat-dialog-close] cdkFocusInitial>Close</button>
+        <button mat-flat-button color="primary" (click)="toggleEditionMode()">Edit</button>
       </ng-container>
       <ng-template #editionActionButtons>
         <button mat-flat-button (click)="cancelEdition()">Cancel</button>
         <button mat-flat-button color="primary" type="submit" [disabled]="!boatFormGroup.valid">Save</button>
       </ng-template>
-  </mat-dialog-actions>
-</form>
+    </mat-dialog-actions>
+    </form>
+</div>

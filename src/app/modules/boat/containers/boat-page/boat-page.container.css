@@ -1,0 +1,22 @@
+#boat-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#boat-table-header {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#boat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#no-boat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}

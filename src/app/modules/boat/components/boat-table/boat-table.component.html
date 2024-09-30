@@ -6,8 +6,8 @@
 
   <ng-container [matColumnDef]="ACTION_COLUMN_DEFINITION">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let boat">
-      <button color="primary" mat-flat-button (click)="showBoat(boat.id)">
+    <mat-cell *matCellDef="let boat" class="action-cell">
+      <button color="primary" mat-flat-button (click)="showBoat(boat.id)" class="show-button">
         <mat-icon aria-label="View boat" title="View boat">
           visibility
         </mat-icon>

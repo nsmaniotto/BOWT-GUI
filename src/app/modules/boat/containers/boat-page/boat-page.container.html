@@ -1,12 +1,19 @@
-<div *ngIf="boatList$ | async as boats; else noBoat">
-  <div *ngIf="boats.length;else noBoat">
-    <app-boat-create-button (onClick)="openBoatCreationDialog()"></app-boat-create-button>
-    <app-boat-table [boats]="boats"></app-boat-table>
-  </div>
-</div>
+<div id="boat-page-container">
+  <div *ngIf="boatList$ | async as boats; else noBoat" id="boat-container">
+    <div *ngIf="boats.length;else noBoat">
+      <div id="boat-table-header">
+        <h1>BOATS</h1>
+        <app-boat-create-button (onClick)="openBoatCreationDialog()"></app-boat-create-button>
+      </div>
+      <app-boat-table [boats]="boats"></app-boat-table>
+      </div>
+      </div>
 
-<ng-template #noBoat>
-  <h1>No Boat created yet ?</h1>
-  <h2>Create your first boat</h2>
-  <app-boat-create-button [capitalizeText]="true" (onClick)="openBoatCreationDialog()"></app-boat-create-button>
-</ng-template>
+  <ng-template #noBoat>
+    <div id="no-boat-container">
+      <h1>No boat created yet ?</h1>
+      <h2>Create your first boat</h2>
+      <app-boat-create-button [capitalizeText]="true" (onClick)="openBoatCreationDialog()"></app-boat-create-button>
+    </div>
+  </ng-template>
+</div>

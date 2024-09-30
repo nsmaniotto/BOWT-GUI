@@ -68,7 +68,9 @@ export class RegistrationComponent implements OnDestroy {
   }
 
 	public submitRegistration(): void {
-    this._authStoreService.register(this.registrationFormGroup.value as User);
+    if (this.registrationFormGroup.valid) {
+      this._authStoreService.register(this.registrationFormGroup.value as User);
+    }
 	}
 
 }

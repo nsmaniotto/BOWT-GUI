@@ -1,31 +1,33 @@
-<form [formGroup]="loginFormGroup" (ngSubmit)="submitLogin()">
-  <mat-form-field fxFlex="50" appearance="outline">
-    <mat-label>Username</mat-label>
-    <input matInput placeholder="boatObservator" formControlName="login" required>
-    <mat-error *ngIf="loginFormGroup.controls.login.hasError('required')">This field is
-      required</mat-error>
-    <mat-error *ngIf="loginFormGroup.controls.login.hasError('minlength')">This field must contain at
-      least {{ userLoginFieldMinLength }} characters</mat-error>
-    <mat-error *ngIf="loginFormGroup.controls.login.hasError('maxlength')">This field must contain at
-      most {{ userLoginFieldMaxLength }} characters</mat-error>
-  </mat-form-field>
-  <mat-form-field fxFlex="50" appearance="outline">
-    <mat-label>Password</mat-label>
-    <input matInput type="password" formControlName="password" required>
-    <mat-error *ngIf="loginFormGroup.controls.password.hasError('required')">This field is
-      required</mat-error>
-    <mat-error *ngIf="loginFormGroup.controls.password.hasError('minlength')">This field must contain at
-      least {{ userPasswordFieldMinLength }} characters</mat-error>
-    <mat-error *ngIf="loginFormGroup.controls.password.hasError('maxlength')">This field must contain at
-      most {{ userPasswordFieldMaxLength }} characters</mat-error>
-  </mat-form-field>
+<div id="login-form-container">
+  <h1>Login form</h1>
+  <form [formGroup]="loginFormGroup" (ngSubmit)="submitLogin()" id="login-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="boatObservator" formControlName="login" required>
+      <mat-error *ngIf="loginFormGroup.controls.login.hasError('required')">This field is
+        required</mat-error>
+      <mat-error *ngIf="loginFormGroup.controls.login.hasError('minlength')">This field must contain at
+        least {{ userLoginFieldMinLength }} characters</mat-error>
+      <mat-error *ngIf="loginFormGroup.controls.login.hasError('maxlength')">This field must contain at
+        most {{ userLoginFieldMaxLength }} characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-error *ngIf="loginFormGroup.controls.password.hasError('required')">This field is
+        required</mat-error>
+      <mat-error *ngIf="loginFormGroup.controls.password.hasError('minlength')">This field must contain at
+        least {{ userPasswordFieldMinLength }} characters</mat-error>
+      <mat-error *ngIf="loginFormGroup.controls.password.hasError('maxlength')">This field must contain at
+        most {{ userPasswordFieldMaxLength }} characters</mat-error>
+    </mat-form-field>
 
-  <button color="primary"
-    [disabled]="!loginFormGroup.valid" mat-icon-button type="submit">
-    <mat-icon aria-label="Sign in" title="Sign in">
-      login
-    </mat-icon>
-    Sign in
-  </button>
-</form>
-<div>No account yet ? <a [routerLink]="[AUTH_PATH, REGISTER_ACTION_PATH]">Register</a></div>
+    <button color="primary" mat-flat-button type="submit">
+      <mat-icon aria-label="Sign in" title="Sign in">
+        login
+      </mat-icon>
+      Sign in
+    </button>
+    </form>
+    <div>No account yet ? <a [routerLink]="[AUTH_PATH, REGISTER_ACTION_PATH]">Register</a></div>
+</div>

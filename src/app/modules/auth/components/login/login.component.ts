@@ -50,7 +50,9 @@ export class LoginComponent implements OnDestroy {
   }
 
 	public submitLogin(): void {
-    this._authStoreService.login(this.loginFormGroup.value as User);
+    if (this.loginFormGroup.valid) {
+      this._authStoreService.login(this.loginFormGroup.value as User);
+    }
 	}
 
 }

@@ -5,7 +5,8 @@ import { BoatFieldMaxLength, BoatFieldMinLength } from '../../models/boat.model'
 
 @Component({
   selector: 'app-boat-creation-dialog',
-  templateUrl: './boat-creation-dialog.component.html'
+  templateUrl: './boat-creation-dialog.component.html',
+  styleUrls: ['./boat-creation-dialog.component.css']
 })
 export class BoatCreationDialogComponent {
 
@@ -25,7 +26,7 @@ export class BoatCreationDialogComponent {
     description: new FormControl<string | undefined>(undefined,
       [
         Validators.required,
-        Validators.minLength(BoatFieldMinLength.NAME),
+        Validators.minLength(BoatFieldMinLength.DESCRIPTION),
         Validators.maxLength(BoatFieldMaxLength.DESCRIPTION)
       ]
     )
@@ -34,6 +35,8 @@ export class BoatCreationDialogComponent {
   constructor(private readonly _formBuilder: FormBuilder, private readonly _dialogRef: MatDialogRef<BoatCreationDialogComponent>) { }
 
   public confirmCreation(): void {
-    this._dialogRef.close(this.boatCreationFormGroup.value);
+    if (this.boatCreationFormGroup.valid) {
+      this._dialogRef.close(this.boatCreationFormGroup.value);
+    }
   }
 }

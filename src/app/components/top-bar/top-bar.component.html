@@ -1,17 +1,15 @@
 <mat-toolbar>
-  <span fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10">
+  <span id="app-logo-container">
     <img alt="logo" id="logo" [routerLink]="ROOT_PATH" src="assets/images/bowt_logo.png">
 
     <span translate="no">{{ appName }}</span>
   </span>
 
   <span class="spacer"></span>
-  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-    <ng-container *ngIf="connectedUser">
-      <span>Hello {{ connectedUser.firstName }}</span>
-      <button mat-flat-button (click)="logout()">
-        Logout
-      </button>
-    </ng-container>
+  <div id="user-container" *ngIf="connectedUser">
+    <span id="user-first-name">{{ connectedUser.firstName }}</span>
+    <button mat-flat-button (click)="logout()">
+      Logout
+    </button>
   </div>
 </mat-toolbar>

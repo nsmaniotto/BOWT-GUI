@@ -6,7 +6,8 @@ import { BoatStoreService } from '../../store/service/boat-store.service';
 
 @Component({
   selector: 'app-boat-details-dialog',
-  templateUrl: './boat-details-dialog.component.html'
+  templateUrl: './boat-details-dialog.component.html',
+  styleUrls: ['./boat-details-dialog.component.css']
 })
 export class BoatDetailsDialogComponent implements OnInit {
 
@@ -31,7 +32,7 @@ export class BoatDetailsDialogComponent implements OnInit {
     description: new FormControl<string | undefined>(undefined,
       [
         Validators.required,
-        Validators.minLength(BoatFieldMinLength.NAME),
+        Validators.minLength(BoatFieldMinLength.DESCRIPTION),
         Validators.maxLength(BoatFieldMaxLength.DESCRIPTION)
       ]
     )

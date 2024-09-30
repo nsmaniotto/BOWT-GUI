@@ -1,6 +1,15 @@
+#app-logo-container {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  place-content: center;
+  align-items: center;
+}
+
 #logo {
   border-radius: 5px;
   width: 50px;
+  margin-right: 5px;
 }
 
 #logo:hover {
@@ -9,4 +18,16 @@
 
 .spacer {
   flex: 1 1 auto;
+}
+
+#user-container {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  place-content: center;
+  align-items: center;
+}
+
+#user-first-name {
+  margin-right: 10px;
 }

@@ -1,0 +1,19 @@
+#registration-form-container {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#registration-form {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 300px;
+  margin-bottom: 10px;
+}
